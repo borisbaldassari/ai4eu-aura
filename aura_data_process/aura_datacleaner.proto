@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+message Empty {
+}
+
+message EdfText {
+  bytes edf = 1;
+  bytes anno = 2;
+}
+
+service EdfDatabroker {
+  rpc get_next_file(Empty) returns(EdfText);
+}
