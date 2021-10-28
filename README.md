@@ -1,6 +1,13 @@
 # ai4eu-aura
 
-Implementation of the aura workflow dedicated to AI4EU Experiments.
+Implementation of the AURA workflow for AI4EU Experiments.
+
+
+## Workflows
+
+We demonstrate two workflows: 
+* The first workflow trains the model with a dedicated training data set to learn seizures detection.
+* The second workflow takes a different data set and tests the trained model to predict seizures.
 
 
 
