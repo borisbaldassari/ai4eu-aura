@@ -1,10 +1,8 @@
 import grpc
 from concurrent import futures
-#from typing import List
 import time
 import edf_databroker_train_pb2 as pb2
 import edf_databroker_train_pb2_grpc as pb2_grpc
-import glob
 import os
 from pathlib import Path
 
@@ -29,7 +27,7 @@ class EdfDatabroker(pb2_grpc.EdfDatabrokerServicer):
         if len(self.edf_files) == 0:
             context.set_code(grpc.StatusCode.NOT_FOUND)
             context.set_details("All data has been processed")
-            exit(0)
+            sys.exit()
         else:
             edf_file = self.edf_files[0]
             response.edf = edf_file
@@ -38,9 +36,6 @@ class EdfDatabroker(pb2_grpc.EdfDatabrokerServicer):
             self.edf_files.pop(0)
         return response
 
-# broker = EdfDatabroker()
-# edf_file = broker.get_next_file()
-# print(f"Edf File is {edf_file}")
 
 server = grpc.server(futures.ThreadPoolExecutor(max_workers=5))
 pb2_grpc.add_EdfDatabrokerServicer_to_server(EdfDatabroker(), server)
@@ -51,5 +46,5 @@ server.start()
 try:
     while True:
         time.sleep(86400)
-except KeyboardInterrupt:
+except:
     server.stop(0)
