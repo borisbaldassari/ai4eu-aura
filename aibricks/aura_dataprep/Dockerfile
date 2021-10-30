@@ -1,16 +1,19 @@
 FROM python:3.8
 
 RUN apt-get update -y && apt-get install -y python3-pip python3-dev 
-RUN pip3 install --upgrade pip
-#RUN pip3 install -r requirements.txt
+#RUN pip3 install --upgrade pip
 
-RUN mkdir /scripts/ /data_in/ /data_out/
-COPY scripts/ /scripts/
-WORKDIR /scripts/
+RUN mkdir /aura_dataprep /scripts/ /data/
+COPY . /aura_dataprep
+WORKDIR /aura_dataprep/
+
+RUN pip3 install -r requirements.txt
 
 RUN useradd app
 USER app
 
-ENTRYPOINT ["/scripts/aura_clean_process_dir.sh", "-i", "/data_in", "-o", "/data_out"]
+RUN ls -al /data/
 
+ENTRYPOINT python3 -u aura_dataprep.py
+#ENTRYPOINT ["/scripts/aura_clean_process_dir.sh", "-i", "/data_in", "-o", "/data_out"]
 
