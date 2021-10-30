@@ -17,7 +17,7 @@ class EdfDatabrokerStub(object):
         self.get_next_edf_file = channel.unary_unary(
                 '/EdfDatabroker/get_next_edf_file',
                 request_serializer=edf__databroker__train__pb2.Empty.SerializeToString,
-                response_deserializer=edf__databroker__train__pb2.EdfText.FromString,
+                response_deserializer=edf__databroker__train__pb2.EdfFile.FromString,
                 )
 
 
@@ -36,7 +36,7 @@ def add_EdfDatabrokerServicer_to_server(servicer, server):
             'get_next_edf_file': grpc.unary_unary_rpc_method_handler(
                     servicer.get_next_edf_file,
                     request_deserializer=edf__databroker__train__pb2.Empty.FromString,
-                    response_serializer=edf__databroker__train__pb2.EdfText.SerializeToString,
+                    response_serializer=edf__databroker__train__pb2.EdfFile.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -61,6 +61,6 @@ class EdfDatabroker(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/EdfDatabroker/get_next_edf_file',
             edf__databroker__train__pb2.Empty.SerializeToString,
-            edf__databroker__train__pb2.EdfText.FromString,
+            edf__databroker__train__pb2.EdfFile.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

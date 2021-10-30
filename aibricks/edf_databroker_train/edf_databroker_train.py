@@ -23,7 +23,7 @@ class EdfDatabroker(pb2_grpc.EdfDatabrokerServicer):
         self.edf_files = edf_files
 
     def get_next_edf_file(self, request, context):
-        response = pb2.EdfText()
+        response = pb2.EdfFile()
         if len(self.edf_files) == 0:
             context.set_code(grpc.StatusCode.NOT_FOUND)
             context.set_details("All data has been processed")

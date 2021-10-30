@@ -3,7 +3,7 @@
 # gRPC scripts, runs it and start listening on port 8061.
 
 echo "* Build Docker image."
-#docker build . -t bbaldassari/edf_databroker_train
+docker build . -t bbaldassari/edf_databroker_train --no-cache
 
 echo "* Checking if a previous Docker image is running."
 docker_id=$(docker ps | grep edf_databroker_train | cut -f1 -d\ )
