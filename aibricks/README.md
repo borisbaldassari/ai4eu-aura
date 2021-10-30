@@ -48,6 +48,7 @@ Run the image. For a test drive, you can use the default data sample found in `t
 
 ```
 docker run -v $(pwd)/test/data/01_tcp_ar/:/data_in -v $(pwd)/export/:/data_out ai4eu-aura/aura-datacleaner
+docker run -v $(pwd)/../data/:/data/edf -v $(pwd)/export/:/data_out bbaldassari/aura_dataprep
 ```
 
 All exports will be stored, in this example, in the `export/` local directory.
