@@ -2,10 +2,6 @@
 # Data samples
 
 
-## Iris
-
-A classic datasets for tests.
-
 ## TUH
 
 A few small edf files are provided here for quick tests:

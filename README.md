@@ -1,71 +1,66 @@
-# ai4eu-aura
 
-Implementation of the AURA workflow for AI4EU Experiments.
+# AURA Epileptic Seizure Detection
+
+This repository contains everything required to run the AURA Seizure detection ML process on ECGs.
+
+It notably features:
+* Pipelines for data cleaning and preparation, model training, prediction and visualisation.
+* An Airflow orchestration setup to run the various pipelines locally via a local executor.
+* An [AIBricks](https://ai4europe.eu) orchestration setup to run the pipelines in a kubernetes cluster.
+
+
+## Introduction
+
+
+### AURA
+
+Aura is a not-for-profit organisation working on epileptic seizure detection.
+
+The AURA workflow basically relies on a RandomForest Machine Learning model to detect epileptic seizures from ECGs data.
 
 
 ## Workflows
 
-We demonstrate two workflows: 
-* The first workflow trains the model with a dedicated training data set to learn seizures detection.
-* The second workflow takes a different data set and tests the trained model to predict seizures.
+We built two separate workflows to:
+* The first workflow trains the model with a dedicated training data set to learn seizures detection. It takes as input EDF files (ECGs), prepare data files and train the model, then save the trained model.
+* The second workflow takes a different data set, and from the model trained previously predicts seizures on the ECG files. ECG files are then imported with the predicted seizure annotations into an InfluxDB database and displayed using Grafana.
+
+
+### Model training
+
+![AI4EU_AURA_trainer.png](https://files.nuclino.com/files/b909ba0e-eb25-459e-af44-6f2e55a58f1c/AI4EU_AURA_trainer.png)
+
+The outcome of this workflow is an artefact representing the trained model, that will be re-onboarded into the AIBricks platform to enable further reuse as an easy-to-deploy visual block.
+
+
+### Prediction
+
+![AI4EU_AURA_predictor.png](https://files.nuclino.com/files/a5e6b5af-8376-4faf-a7e0-05ed65fe3c75/AI4EU_AURA_predictor.png)
+
+The visualisation block displays the ECGs with both the model predictions and the original annotations so practitioners can visually compare the model's performance. 
+
+
+## Running with Airflow
 
 
 
-## Data cleaner
+## Running with AIBricks
 
-Dockerfile and scripts are located in `datacleaner/`. This image runs the data preparation steps for a directory.
-A set of data samples is provided
+See [README.md](aibricks/README.md) in `aibricks/`.
 
-### Sequence:
 
-Search for all `.edf` files within the input directory, and for each file run:
-  - the ecg detector (`aura_ecg_detector.py`),
-  - the annotation extractor (`aura_annotation_extractor.py`),
-  - the feature extraction (`aura_features_computation.py`).
+## Contributing
 
-### Building and Testing
+We try to keep the repository clean and well maintained. 
 
-The image is based off a python image and embeds the scripts to clean the data. It is self-sufficient.
+Pull Requests shall be accepted only if:
 
-Build the image. In the repository's root directory, run:
+* The feature works and has been tested on a CI system.
+* There are tests to run the new code. Tests must be reproducible and automated as much as possible.
+* Python code follows the default configuration of flake8.
+* Documentation is present and current. If a new feature is introduced it must be documented, and for a change to an existing feature the current documentation must be updated.
 
-```
-docker build datacleaner/ -t ai4eu-aura/aura-datacleaner
-```
+We use Travis for all Python code, and container-based tests are executed on a [Jenkins instance](https://art.castalia.camp/).
 
-Run the image. For a test drive, you can use the default data sample found in `test/data`:
 
-```
-docker run -v $(pwd)/test/data/01_tcp_ar/:/data_in -v $(pwd)/export/:/data_out ai4eu-aura/aura-datacleaner
-```
 
-All exports will be stored, in this example, in the `export/` local directory.
-
-Example:
-
-```
-boris@castalia:ai4eu-aura$ docker build datacleaner/ -t ai4eu-aura/aura-datacleaner
-Sending build context to Docker daemon  60.42kB
-Step 1/9 : FROM python:3.8
- ---> 2e2712906942
- [SNIP]
-Step 9/9 : ENTRYPOINT ["/scripts/aura_clean_process_dir.sh", "-i", "/data_in", "-o", "/data_out"]
- ---> Using cache
- ---> 0a2f97587210
-Successfully built 0a2f97587210
-Successfully tagged ai4eu-aura/aura-datacleaner:latest
-boris@castalia:ai4eu-aura$ docker run -v $(pwd)/test/data/01_tcp_ar/:/data_in -v $(pwd)/export/:/data_out ai4eu-aura/aura-datacleaner
-Start Executing script
-* Working on file [/data_in/002/00009578/00009578_s006_t001.edf]
-    EDF file [/data_in/002/00009578/00009578_s006_t001.edf]
-    ECG /data_out//res_00009578_s006_t001.json - Fail
-    TSE file [/data_out//00009578_s006_t001.tse_bi]
-    ANNOT /data_out//annot_00009578_s006_t001.json - OK
-    FEATS /data_out//feats_hamilton_00009578_s006_t001.json - Fail
-* Working on file [/data_in/002/00009578/00009578_s002_t001.edf]
-    EDF file [/data_in/002/00009578/00009578_s002_t001.edf]
-    ECG /data_out//res_00009578_s002_t001.json - Fail
-    TSE file [/data_out//00009578_s002_t001.tse_bi]
-    ANNOT /data_out//annot_00009578_s002_t001.json - OK
-    FEATS /data_out//feats_hamilton_00009578_s002_t001.json - Fail
-```
