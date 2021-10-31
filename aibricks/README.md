@@ -1,15 +1,56 @@
 
 # AURA on AIBricks
 
-Implementation of the AURA workflow for AI4EU Experiments.
+Implementation of the AURA workflow for AIBricks.
 
 
 ## Workflows
 
-We demonstrate two workflows: 
-* The first workflow trains the model with a dedicated training data set to learn seizures detection.
-* The second workflow takes a different data set and tests the trained model to predict seizures.
+We built two separate workflows to:
+* The first workflow trains the model with a dedicated training data set to learn seizures detection. It takes as input EDF files (ECGs), prepare data files and train the model, then save the trained model.
+* The second workflow takes a different data set, and from the model trained previously predicts seizures on the ECG files. ECG files are then imported with the predicted seizure annotations into an InfluxDB database and displayed using Grafana.
 
+
+### Model training
+
+![AI4EU_AURA_trainer.png](https://files.nuclino.com/files/b909ba0e-eb25-459e-af44-6f2e55a58f1c/AI4EU_AURA_trainer.png)
+
+The outcome of this workflow is an artefact representing the trained model, that will be re-onboarded into the AIBricks platform to enable further reuse as an easy-to-deploy visual block.
+
+
+### Prediction
+
+![AI4EU_AURA_predictor.png](https://files.nuclino.com/files/a5e6b5af-8376-4faf-a7e0-05ed65fe3c75/AI4EU_AURA_predictor.png)
+
+The visualisation block displays the ECGs with both the model predictions and the original annotations so practitioners can visually compare the model's performance. 
+
+
+## Execution and tests
+
+All images are built along the same structure and provide the same facilities for testing. We'll use image `edf_databroker_train` as an example, but any image directory name can be used interchangeably.
+
+
+### Testing scripts
+
+Open up a terminal in the image directory to run the server, and execute the following command:
+```
+source env/bin/activate
+python edf_databroker_train.py
+```
+
+Open another terminal in the image directory for the client execution, and execute the following command:
+```
+source env/bin/activate
+pytest test_edf_databroker_train.py
+```
+
+
+### Testing Docker images
+
+One can test the Docker images with the following commands:
+```
+bash build_and_run_docker.sh
+```
 
 ## Containers
 
