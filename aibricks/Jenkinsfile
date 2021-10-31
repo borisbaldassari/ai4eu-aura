@@ -13,6 +13,8 @@ pipeline {
       steps {
         script {
           sh """
+          cd aibricks/
+
           # Delete previously built virtualenv
           if [ -d pyenv ]; then
               rm -rf pyenv/
@@ -27,7 +29,6 @@ pipeline {
           pip install --quiet pylint
           #nosetests --with-xcoverage --with-xunit --cover-package=aibricks --cover-erase
           #pylint -f parseable aibricks/ | tee pylint.out
-          cd aibricks
           pip install -r requirements.txt
           """
         }
