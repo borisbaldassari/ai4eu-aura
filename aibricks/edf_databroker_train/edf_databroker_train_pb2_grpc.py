@@ -15,10 +15,10 @@ class EdfDatabrokerStub(object):
             channel: A grpc.Channel.
         """
         self.get_next_edf_file = channel.unary_unary(
-                '/EdfDatabroker/get_next_edf_file',
-                request_serializer=edf__databroker__train__pb2.Empty.SerializeToString,
-                response_deserializer=edf__databroker__train__pb2.EdfFile.FromString,
-                )
+            "/EdfDatabroker/get_next_edf_file",
+            request_serializer=edf__databroker__train__pb2.Empty.SerializeToString,
+            response_deserializer=edf__databroker__train__pb2.EdfFile.FromString,
+        )
 
 
 class EdfDatabrokerServicer(object):
@@ -27,40 +27,53 @@ class EdfDatabrokerServicer(object):
     def get_next_edf_file(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
 
 def add_EdfDatabrokerServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'get_next_edf_file': grpc.unary_unary_rpc_method_handler(
-                    servicer.get_next_edf_file,
-                    request_deserializer=edf__databroker__train__pb2.Empty.FromString,
-                    response_serializer=edf__databroker__train__pb2.EdfFile.SerializeToString,
-            ),
+        "get_next_edf_file": grpc.unary_unary_rpc_method_handler(
+            servicer.get_next_edf_file,
+            request_deserializer=edf__databroker__train__pb2.Empty.FromString,
+            response_serializer=edf__databroker__train__pb2.EdfFile.SerializeToString,
+        ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'EdfDatabroker', rpc_method_handlers)
+        "EdfDatabroker", rpc_method_handlers
+    )
     server.add_generic_rpc_handlers((generic_handler,))
 
 
- # This class is part of an EXPERIMENTAL API.
+# This class is part of an EXPERIMENTAL API.
 class EdfDatabroker(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def get_next_edf_file(request,
+    def get_next_edf_file(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/EdfDatabroker/get_next_edf_file',
+            "/EdfDatabroker/get_next_edf_file",
             edf__databroker__train__pb2.Empty.SerializeToString,
             edf__databroker__train__pb2.EdfFile.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )

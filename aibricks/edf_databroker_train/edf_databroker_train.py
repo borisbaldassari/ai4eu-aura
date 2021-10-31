@@ -9,16 +9,16 @@ from pathlib import Path
 # gRPC port
 port = 8061
 
-data_path="data/"
+data_path = "data/"
 edf_files: list = []
 
-class EdfDatabroker(pb2_grpc.EdfDatabrokerServicer):
 
+class EdfDatabroker(pb2_grpc.EdfDatabrokerServicer):
     def __init__(self):
         for root, dirs, files in os.walk(data_path):
             for file in files:
-                if file.endswith('.edf'):
-#                    print(f"- file {os.path.join(root, file)}.")
+                if file.endswith(".edf"):
+                    #                    print(f"- file {os.path.join(root, file)}.")
                     edf_files.append(f"{os.path.join(root, file)}")
         self.edf_files = edf_files
 
@@ -31,7 +31,7 @@ class EdfDatabroker(pb2_grpc.EdfDatabrokerServicer):
         else:
             edf_file = self.edf_files[0]
             response.edf = edf_file
-            anno_file = os.path.splitext(edf_file)[0]+'.tse_bi'
+            anno_file = os.path.splitext(edf_file)[0] + ".tse_bi"
             response.anno = anno_file
             self.edf_files.pop(0)
         return response

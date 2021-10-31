@@ -4,8 +4,14 @@
 
 IMAGE="edf_databroker_train"
 
+echo "* Prepare directories."
+echo "  - Copy data files"
+cp -r ../../data/ .
+#echo "  - Copy scripts"
+#cp -r ../../src/scripts/ .
+
 echo "* Build Docker image."
-docker build . -t bbaldassari/$IMAGE --no-cache
+docker build . -t bbaldassari/$IMAGE #--no-cache
 
 echo "* Checking if a previous Docker image is running."
 docker_id=$(docker ps | grep $IMAGE | cut -f1 -d\ )
