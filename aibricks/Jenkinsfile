@@ -19,9 +19,9 @@ pipeline {
           fi
 
           # Create virtualenv and install necessary packages
-          virtualenv --no-site-packages pyenv
-          #. pyenv/bin/activate
-          export PATH=pyenv/bin:${PATH}
+          python3 -m venv pyenv
+          . pyenv/bin/activate
+          #export PATH=pyenv/bin:${PATH}
           pip install --upgrade pip
           pip install --quiet nosexcover
           pip install --quiet pylint
