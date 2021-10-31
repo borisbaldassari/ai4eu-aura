@@ -7,8 +7,10 @@ message DataFile {
 }
 
 message EdfFile {
-  string edf = 1;
-  string anno = 2;
+  string dir_in = 1;
+  string file_in_edf = 2;
+  string file_in_anno = 3;
+  string dir_out = 4;
 }
 
 service AuraDataprep {

@@ -15,10 +15,10 @@ class AuraDataprepStub(object):
             channel: A grpc.Channel.
         """
         self.prepareEdfFile = channel.unary_unary(
-                '/AuraDataprep/prepareEdfFile',
-                request_serializer=aura__dataprep__pb2.EdfFile.SerializeToString,
-                response_deserializer=aura__dataprep__pb2.DataFile.FromString,
-                )
+            "/AuraDataprep/prepareEdfFile",
+            request_serializer=aura__dataprep__pb2.EdfFile.SerializeToString,
+            response_deserializer=aura__dataprep__pb2.DataFile.FromString,
+        )
 
 
 class AuraDataprepServicer(object):
@@ -27,40 +27,53 @@ class AuraDataprepServicer(object):
     def prepareEdfFile(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
 
 def add_AuraDataprepServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'prepareEdfFile': grpc.unary_unary_rpc_method_handler(
-                    servicer.prepareEdfFile,
-                    request_deserializer=aura__dataprep__pb2.EdfFile.FromString,
-                    response_serializer=aura__dataprep__pb2.DataFile.SerializeToString,
-            ),
+        "prepareEdfFile": grpc.unary_unary_rpc_method_handler(
+            servicer.prepareEdfFile,
+            request_deserializer=aura__dataprep__pb2.EdfFile.FromString,
+            response_serializer=aura__dataprep__pb2.DataFile.SerializeToString,
+        ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'AuraDataprep', rpc_method_handlers)
+        "AuraDataprep", rpc_method_handlers
+    )
     server.add_generic_rpc_handlers((generic_handler,))
 
 
- # This class is part of an EXPERIMENTAL API.
+# This class is part of an EXPERIMENTAL API.
 class AuraDataprep(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def prepareEdfFile(request,
+    def prepareEdfFile(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/AuraDataprep/prepareEdfFile',
+            "/AuraDataprep/prepareEdfFile",
             aura__dataprep__pb2.EdfFile.SerializeToString,
             aura__dataprep__pb2.DataFile.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )

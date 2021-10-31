@@ -1,7 +1,7 @@
 #!/bin/bash
 # Copyright (C) 2021  The AURA developers
 # See the AUTHORS file at the top-level directory of this distribution
-# SPDX-License-Identifier: GPL-3.0
+# SPDX-License-Identifier: EPL-2.0
 
 # QRS_DETECTORS=("gqrs" "xqrs" "hamilton" "engelsee" "swt")
 QRS_DETECTORS=("hamilton")
