@@ -1,5 +1,4 @@
 biosppy==0.7.3
-grpc==1.0.0
 grpcio==1.41.1
 hrv_analysis==1.0.4
 numpy==1.19.5
