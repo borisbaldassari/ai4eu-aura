@@ -8,9 +8,14 @@ python:
 
 install:
   - pip install -r src/requirements.txt
-  - pip install codecov pytest-cov
+  - pip install codecov pytest-cov flake8 flake8-docstrings black
 
 script:
+  - echo "Using flake8 to check Python code"
+  - flake8 ./src/*/*.py
+  - echo "Using black to check Python code"
+  - black --check ./src/*/*.py
+  - echo "Using flake8 to check tests (with lots of exclusions)"
   - pytest --cov=./src/
 
 after_success:
