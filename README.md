@@ -1,4 +1,6 @@
 
+[![Build Status](https://app.travis-ci.com/borisbaldassari/ai4eu-aura.svg?branch=main)](https://app.travis-ci.com/borisbaldassari/ai4eu-aura)
+
 # AURA Epileptic Seizure Detection
 
 This repository contains everything required to run the AURA Seizure detection ML process on ECGs.
