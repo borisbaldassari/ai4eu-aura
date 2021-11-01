@@ -1,0 +1,11 @@
+biosppy==0.7.3
+grpc==1.0.0
+grpcio==1.41.1
+hrv_analysis==1.0.4
+numpy==1.19.5
+protobuf==3.19.1
+py_ecg_detectors==1.0.2
+pyEDFlib==0.1.22
+pytest==6.2.4
+scipy==1.7.1
+wfdb==3.4.0
