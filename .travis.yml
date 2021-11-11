@@ -12,7 +12,7 @@ install:
 
 script:
   - echo "Running checks on repository"
-  - bash resources/releng/chcek_repository.sh
+  - bash resources/releng/check_repository.sh
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
