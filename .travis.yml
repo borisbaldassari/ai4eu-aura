@@ -11,12 +11,8 @@ install:
   - pip install codecov pytest-cov flake8 flake8-docstrings black
 
 script:
-  - echo "Using flake8 to check Python code"
-  - flake8 ./src/*/*.py
-  - echo "Using black to check Python code"
-  - black --check ./src/*/*.py
-  - echo "Using flake8 to check tests (with lots of exclusions)"
-  - pytest --cov=./src/
+  - echo "Running checks on repository"
+  - bash resources/releng/chcek_repository.sh
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
