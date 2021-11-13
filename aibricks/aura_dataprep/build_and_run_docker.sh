@@ -28,13 +28,14 @@ else
     docker ps | grep $IMAGE
 fi
 exit
+
 echo "* Run Docker image."
 docker run -p 8061:8061 $IMAGE &
 sleep 2
 
 echo "* Run client python test script."
 source ../env/bin/activate
-pytest test_$IMAGE.py
+pytest test_aura_dataprep.py
 pytest_result=$?
 
 echo "* Stop the Docker image."

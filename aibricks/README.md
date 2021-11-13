@@ -79,17 +79,16 @@ Search for all `.edf` files within the input directory, and for each file run:
 
 The image is based off a python image and embeds the scripts to clean the data. It is self-sufficient.
 
-Build the image. In the repository's root directory, run:
+Build the image. In the `aura_dataprep` directory, run:
 
 ```
-docker build datacleaner/ -t ai4eu-aura/aura-datacleaner
+docker build . -t bbaldassari/aura_dataprep
 ```
 
 Run the image. For a test drive, you can use the default data sample found in `test/data`:
 
 ```
-docker run -v $(pwd)/test/data/01_tcp_ar/:/data_in -v $(pwd)/export/:/data_out ai4eu-aura/aura-datacleaner
-docker run -v $(pwd)/../data/:/data/edf -v $(pwd)/export/:/data_out bbaldassari/aura_dataprep
+docker run -v $(pwd)/data/tuh/:/data_in -v $(pwd)/export/:/data_out bbaldassari/aura_dataprep bash /aura/scripts/run_bash_pipeline.sh /data_in /data_out
 ```
 
 All exports will be stored, in this example, in the `export/` local directory.
@@ -97,28 +96,25 @@ All exports will be stored, in this example, in the `export/` local directory.
 Example:
 
 ```
-boris@castalia:ai4eu-aura$ docker build datacleaner/ -t ai4eu-aura/aura-datacleaner
-Sending build context to Docker daemon  60.42kB
-Step 1/9 : FROM python:3.8
- ---> 2e2712906942
- [SNIP]
-Step 9/9 : ENTRYPOINT ["/scripts/aura_clean_process_dir.sh", "-i", "/data_in", "-o", "/data_out"]
- ---> Using cache
- ---> 0a2f97587210
-Successfully built 0a2f97587210
-Successfully tagged ai4eu-aura/aura-datacleaner:latest
-boris@castalia:ai4eu-aura$ docker run -v $(pwd)/test/data/01_tcp_ar/:/data_in -v $(pwd)/export/:/data_out ai4eu-aura/aura-datacleaner
+boris@castalia:aura_dataprep$ docker run -v $(pwd)/data/tuh/:/data_in -v $(pwd)/export/:/data_out bbaldassari/aura_dataprep bash /aura/scripts/run_bash_pipeline.sh /data_in /data_out
+- Detect rr-intervals.
 Start Executing script
-* Working on file [/data_in/002/00009578/00009578_s006_t001.edf]
-    EDF file [/data_in/002/00009578/00009578_s006_t001.edf]
-    ECG /data_out//res_00009578_s006_t001.json - Fail
-    TSE file [/data_out//00009578_s006_t001.tse_bi]
-    ANNOT /data_out//annot_00009578_s006_t001.json - OK
-    FEATS /data_out//feats_hamilton_00009578_s006_t001.json - Fail
-* Working on file [/data_in/002/00009578/00009578_s002_t001.edf]
-    EDF file [/data_in/002/00009578/00009578_s002_t001.edf]
-    ECG /data_out//res_00009578_s002_t001.json - Fail
-    TSE file [/data_out//00009578_s002_t001.tse_bi]
-    ANNOT /data_out//annot_00009578_s002_t001.json - OK
-    FEATS /data_out//feats_hamilton_00009578_s002_t001.json - Fail
+/aura
+/data_in//dev/01_tcp_ar/002/00009578/00009578_s006_t001.edf - OK
+/data_in//dev/01_tcp_ar/002/00009578/00009578_s002_t001.edf - OK
+- Compute features.
+Start Executing script
+/aura
+/data_out//res-v0_6/dev/01_tcp_ar/002/00009578/00009578_s002_t001.csv # - OK
+/data_out//res-v0_6/dev/01_tcp_ar/002/00009578/00009578_s006_t001.csv # - OK
+- Consolidate features and annotations.
+Start Executing script
+/aura
+/data_in//dev/01_tcp_ar/002/00009578/00009578_s002_t001.tse_bi
+/data_out//feats-v0_6/dev/01_tcp_ar/002/00009578/00009578_s002_t001.csv and /data_in//dev/01_tcp_ar/002/00009578/00009578_s002_t001.tse_bi # - OK
+/data_in//dev/01_tcp_ar/002/00009578/00009578_s006_t001.tse_bi
+/data_out//feats-v0_6/dev/01_tcp_ar/002/00009578/00009578_s006_t001.csv and /data_in//dev/01_tcp_ar/002/00009578/00009578_s006_t001.tse_bi # - OK
+Done
+boris@castalia:aura_dataprep$ 
 ```
+

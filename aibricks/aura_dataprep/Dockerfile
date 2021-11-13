@@ -9,7 +9,7 @@ WORKDIR /aura/
 
 RUN python3 -m pip install -r requirements.txt
 
-RUN useradd app
+RUN useradd -m app
 USER app
 
 RUN ls -al /aura/*

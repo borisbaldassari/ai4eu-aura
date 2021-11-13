@@ -1,10 +1,8 @@
 
 # this script is meant to be executed from the root directory of the repo.
 
-#DATA_PATH=$1
-#EXPORT_PATH=$2
-DATA_PATH=/data_in/
-EXPORT_PATH=/data_out/
+DATA_PATH=$1
+EXPORT_PATH=$2
 
 FOLDER_PATH=$(pwd)
 SRC_PATH=./src
