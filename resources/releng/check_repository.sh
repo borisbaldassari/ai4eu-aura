@@ -4,5 +4,5 @@ flake8 ./src/*/*.py
 echo "Using black to check Python code"
 black --check ./src/*/*.py
 echo "Using flake8 to check tests on src/"
-pytest --cov=./src/ ./src
+pytest --cov=./src/ ./tests/
 #--ignore-glob='*_pb2*' ./
