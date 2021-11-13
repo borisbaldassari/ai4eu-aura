@@ -10,8 +10,8 @@ import subprocess
 # gRPC port
 port = 8061
 
-edf_path = "edf/"
-data_path = "out/"
+edf_path = "/data_in/"
+data_path = "/data_out/"
 # edf_files: list = []
 
 
@@ -22,34 +22,25 @@ class AuraDataprep(pb2_grpc.AuraDataprepServicer):
 
     def prepareEdfFile(self, request, context):
         response = pb2.DataFile()
-        file_edf = request.edf
-        file_anno = request.anno
+        dir_in = request.dir
+        dir_edf = f"{edf_path}{dir_in}"
         print("In aura_dataprep.py:")
-        print(f"- file_edf {file_edf}")
-        print(f"- file_anno {file_anno}")
+        print(f"- dir_edf {dir_edf}")
         dir_edf = os.path.dirname(file_edf)
-        # dir_rel = dir_edf.removeprefix(edf_path)
-        dir_out = re.sub("^" + edf_path, data_path, dir_edf)
+        dir_out = f"{data_path}{dir_in}"
         print(f"- dir_out {dir_out}")
-        # dir_out = f"{data_path}/{dir_rel}"
         subprocess.call(
             [
                 "bash",
-                "./scripts/aura_clean_process_file.sh",
-                "-i",
-                file_edf,
-                "-a",
-                file_anno,
-                "-o",
+                "./scripts/run_bash_pipeline.sh",
+                dir_edf,
                 dir_out,
             ]
         )
 
         base_name = os.path.basename(file_edf)
         base_name = base_name[:-4]
-        response.ecg = f"{dir_out}/ecg_{base_name}.json"
-        response.anno = f"{dir_out}/anno_{base_name}.json"
-        response.feats = f"{dir_out}/feats_hamilton_{base_name}.json"
+        response.dir = dir_out
         return response
 
 

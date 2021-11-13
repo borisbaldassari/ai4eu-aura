@@ -2,10 +2,20 @@
 # This script builds the Docker image with the corresponding
 # gRPC scripts, runs it and start listening on port 8061.
 
-IMAGE="aura_dataprep"
+IMAGE="bbaldassari/aura_dataprep"
+
+echo "* Prepare directories & scripts."
+rm -rf data scripts src
+cp -r ../../data/ ../../scripts/ ../../src/ ./
+
+. ../env/bin/activate
+python -m grpc_tools.protoc -I=./ --python_out=. --grpc_python_out=. aura_dataprep.proto
 
 echo "* Build Docker image."
-docker build . -t bbaldassari/$IMAGE 
+docker build . -t $IMAGE 
+
+echo "* Clean temp files."
+#rm -rf data/ scripts/ src/
 
 echo "* Checking if a previous Docker image is running."
 docker_id=$(docker ps | grep $IMAGE | cut -f1 -d\ )
@@ -17,9 +27,9 @@ else
     echo "    Listing $IMAGE:"
     docker ps | grep $IMAGE
 fi
-
+exit
 echo "* Run Docker image."
-docker run -p 8061:8061 bbaldassari/$IMAGE &
+docker run -p 8061:8061 $IMAGE &
 sleep 2
 
 echo "* Run client python test script."

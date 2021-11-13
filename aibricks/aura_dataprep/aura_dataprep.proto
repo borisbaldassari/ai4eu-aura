@@ -1,18 +1,13 @@
 syntax = "proto3";
 
-message DataFile {
-  string ecg = 1;
-  string anno = 2;
-  string feats = 3;
+message OutDir {
+  string dir = 3;
 }
 
-message EdfFile {
-  string dir_in = 1;
-  string file_in_edf = 2;
-  string file_in_anno = 3;
-  string dir_out = 4;
+message EdfDir {
+  string dir = 1;
 }
 
 service AuraDataprep {
-  rpc prepareEdfFile(EdfFile) returns(DataFile);
+  rpc prepareEdfDir(EdfDir) returns(OutDir);
 }
