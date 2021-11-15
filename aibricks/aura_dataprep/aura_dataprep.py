@@ -20,27 +20,24 @@ class AuraDataprep(pb2_grpc.AuraDataprepServicer):
         print("Initialising AuraDataprep.")
         #        self.edf_files = edf_files
 
-    def prepareEdfFile(self, request, context):
-        response = pb2.DataFile()
+    def prepareEdfDir(self, request, context):
+        response = pb2.OutDir()
         dir_in = request.dir
         dir_edf = f"{edf_path}{dir_in}"
         print("In aura_dataprep.py:")
         print(f"- dir_edf {dir_edf}")
-        dir_edf = os.path.dirname(file_edf)
-        dir_out = f"{data_path}{dir_in}"
-        print(f"- dir_out {dir_out}")
+#        dir_out = f"{data_path}{dir_in}"
+#        print(f"- dir_out {dir_out}")
         subprocess.call(
             [
                 "bash",
-                "./scripts/run_bash_pipeline.sh",
+                "/aura/scripts/run_bash_pipeline.sh",
                 dir_edf,
-                dir_out,
+                data_path,
+                dir_in,
             ]
         )
-
-        base_name = os.path.basename(file_edf)
-        base_name = base_name[:-4]
-        response.dir = dir_out
+        response.dir = "false"
         return response
 
 

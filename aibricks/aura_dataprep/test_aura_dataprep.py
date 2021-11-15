@@ -8,19 +8,13 @@ import os
 grpc_url = "localhost:8061"
 
 edf_dir_1 = {
-    "dir": "data/tuh/dev/01_tcp_ar/002/00009578/",
+    "dir": "tuh/dev/01_tcp_ar/002/00009578/",
 }
 
 out_dir_1 = {
-    "dir": "out/tuh/dev/01_tcp_ar/002/00009578/",
+    "dir": "false",
+#    "dir": "tuh/dev/01_tcp_ar/002/00009578/",
 }
-
-
-def _set_path(path):
-    # Prepare variables with absolute paths
-    cwd = os.getcwd()
-    print(f"PATH {cwd}")
-    return cwd + "/" + path
 
 
 def get_grpc() -> List[Any]:
@@ -29,19 +23,10 @@ def get_grpc() -> List[Any]:
         rep: List[Any] = []
         try:
             edf_1 = pb2.EdfDir(
-                dir=_set_path(edf_dir_1["edf"]),
+                dir=edf_dir_1["dir"],
             )
             out_1 = stub.prepareEdfDir(edf_1)
-            print(f"- out_1 {out_1}.")
             rep.append(out_1)
-            time.sleep(1)
-            edf_2 = pb2.EdfDir(
-                edf=_set_path(edf_dir_2["edf"]),
-                anno=_set_path(edf_dir_2["anno"]),
-            )
-            out_2 = stub.prepareEdfDir(edf_2)
-            print(f"- out_2 {out_2}.")
-            rep.append(out_2)
         except grpc.RpcError as rpc_error:
             print(f"gRPC Error: {rpc_error}.")
         return rep
@@ -50,7 +35,14 @@ def get_grpc() -> List[Any]:
 def test_grpc():
     dirs = get_grpc()
     assert dirs is not None
-    assert dirs[0].dir == _set_path(out_dir_1["dir"])
+    print(f"dirs is {dirs}")
+    assert dirs[0].dir == out_dir_1["dir"]
+    assert os.path.exists("export/cons-v0_6/tuh/dev/01_tcp_ar/002/00009578/00009578_s002_t001.csv")
+    assert os.path.exists("export/cons-v0_6/tuh/dev/01_tcp_ar/002/00009578/00009578_s006_t001.csv")
+    assert os.path.exists("export/res-v0_6/tuh/dev/01_tcp_ar/002/00009578/00009578_s002_t001.csv")
+    assert os.path.exists("export/res-v0_6/tuh/dev/01_tcp_ar/002/00009578/00009578_s006_t001.csv")
+    assert os.path.exists("export/feats-v0_6/tuh/dev/01_tcp_ar/002/00009578/00009578_s002_t001.csv")
+    assert os.path.exists("export/feats-v0_6/tuh/dev/01_tcp_ar/002/00009578/00009578_s006_t001.csv")
 
 
 if __name__ == "__main__":
