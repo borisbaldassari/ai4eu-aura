@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x13\x61ura_dataprep.proto\"\x15\n\x06OutDir\x12\x0b\n\x03\x64ir\x18\x03 \x01(\t\"\x15\n\x06\x45\x64\x66\x44ir\x12\x0b\n\x03\x64ir\x18\x01 \x01(\t21\n\x0c\x41uraDataprep\x12!\n\rprepareEdfDir\x12\x07.EdfDir\x1a\x07.OutDirb\x06proto3'
+  serialized_pb=b'\n\x13\x61ura_dataprep.proto\"\x15\n\x06OutDir\x12\x0b\n\x03\x64ir\x18\x01 \x01(\t\"\x15\n\x06\x45\x64\x66\x44ir\x12\x0b\n\x03\x64ir\x18\x01 \x01(\t21\n\x0c\x41uraDataprep\x12!\n\rprepareEdfDir\x12\x07.EdfDir\x1a\x07.OutDirb\x06proto3'
 )
 
 
@@ -35,7 +35,7 @@ _OUTDIR = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='dir', full_name='OutDir.dir', index=0,
-      number=3, type=9, cpp_type=9, label=1,
+      number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
