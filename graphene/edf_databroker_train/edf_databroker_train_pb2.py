@@ -6,153 +6,124 @@ from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
-
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
 
 
+
+
 DESCRIPTOR = _descriptor.FileDescriptor(
-    name="edf_databroker_train.proto",
-    package="",
-    syntax="proto3",
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-    serialized_pb=b'\n\x1a\x65\x64\x66_databroker_train.proto"\x07\n\x05\x45mpty"$\n\x07\x45\x64\x66\x46ile\x12\x0b\n\x03\x65\x64\x66\x18\x01 \x01(\t\x12\x0c\n\x04\x61nno\x18\x02 \x01(\t26\n\rEdfDatabroker\x12%\n\x11get_next_edf_file\x12\x06.Empty\x1a\x08.EdfFileb\x06proto3',
+  name='edf_databroker_train.proto',
+  package='',
+  syntax='proto3',
+  serialized_options=None,
+  create_key=_descriptor._internal_create_key,
+  serialized_pb=b'\n\x1a\x65\x64\x66_databroker_train.proto\"\x07\n\x05\x45mpty\"\x15\n\x06\x45\x64\x66\x44ir\x12\x0b\n\x03\x64ir\x18\x01 \x01(\t24\n\rEdfDatabroker\x12#\n\x10get_next_edf_dir\x12\x06.Empty\x1a\x07.EdfDirb\x06proto3'
 )
+
+
 
 
 _EMPTY = _descriptor.Descriptor(
-    name="Empty",
-    full_name="Empty",
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    create_key=_descriptor._internal_create_key,
-    fields=[],
-    extensions=[],
-    nested_types=[],
-    enum_types=[],
-    serialized_options=None,
-    is_extendable=False,
-    syntax="proto3",
-    extension_ranges=[],
-    oneofs=[],
-    serialized_start=30,
-    serialized_end=37,
+  name='Empty',
+  full_name='Empty',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=30,
+  serialized_end=37,
 )
 
 
-_EDFFILE = _descriptor.Descriptor(
-    name="EdfFile",
-    full_name="EdfFile",
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    create_key=_descriptor._internal_create_key,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name="edf",
-            full_name="EdfFile.edf",
-            index=0,
-            number=1,
-            type=9,
-            cpp_type=9,
-            label=1,
-            has_default_value=False,
-            default_value=b"".decode("utf-8"),
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-        _descriptor.FieldDescriptor(
-            name="anno",
-            full_name="EdfFile.anno",
-            index=1,
-            number=2,
-            type=9,
-            cpp_type=9,
-            label=1,
-            has_default_value=False,
-            default_value=b"".decode("utf-8"),
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-    ],
-    extensions=[],
-    nested_types=[],
-    enum_types=[],
-    serialized_options=None,
-    is_extendable=False,
-    syntax="proto3",
-    extension_ranges=[],
-    oneofs=[],
-    serialized_start=39,
-    serialized_end=75,
+_EDFDIR = _descriptor.Descriptor(
+  name='EdfDir',
+  full_name='EdfDir',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='dir', full_name='EdfDir.dir', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=39,
+  serialized_end=60,
 )
 
-DESCRIPTOR.message_types_by_name["Empty"] = _EMPTY
-DESCRIPTOR.message_types_by_name["EdfFile"] = _EDFFILE
+DESCRIPTOR.message_types_by_name['Empty'] = _EMPTY
+DESCRIPTOR.message_types_by_name['EdfDir'] = _EDFDIR
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-Empty = _reflection.GeneratedProtocolMessageType(
-    "Empty",
-    (_message.Message,),
-    {
-        "DESCRIPTOR": _EMPTY,
-        "__module__": "edf_databroker_train_pb2"
-        # @@protoc_insertion_point(class_scope:Empty)
-    },
-)
+Empty = _reflection.GeneratedProtocolMessageType('Empty', (_message.Message,), {
+  'DESCRIPTOR' : _EMPTY,
+  '__module__' : 'edf_databroker_train_pb2'
+  # @@protoc_insertion_point(class_scope:Empty)
+  })
 _sym_db.RegisterMessage(Empty)
 
-EdfFile = _reflection.GeneratedProtocolMessageType(
-    "EdfFile",
-    (_message.Message,),
-    {
-        "DESCRIPTOR": _EDFFILE,
-        "__module__": "edf_databroker_train_pb2"
-        # @@protoc_insertion_point(class_scope:EdfFile)
-    },
-)
-_sym_db.RegisterMessage(EdfFile)
+EdfDir = _reflection.GeneratedProtocolMessageType('EdfDir', (_message.Message,), {
+  'DESCRIPTOR' : _EDFDIR,
+  '__module__' : 'edf_databroker_train_pb2'
+  # @@protoc_insertion_point(class_scope:EdfDir)
+  })
+_sym_db.RegisterMessage(EdfDir)
+
 
 
 _EDFDATABROKER = _descriptor.ServiceDescriptor(
-    name="EdfDatabroker",
-    full_name="EdfDatabroker",
-    file=DESCRIPTOR,
+  name='EdfDatabroker',
+  full_name='EdfDatabroker',
+  file=DESCRIPTOR,
+  index=0,
+  serialized_options=None,
+  create_key=_descriptor._internal_create_key,
+  serialized_start=62,
+  serialized_end=114,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='get_next_edf_dir',
+    full_name='EdfDatabroker.get_next_edf_dir',
     index=0,
+    containing_service=None,
+    input_type=_EMPTY,
+    output_type=_EDFDIR,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
-    serialized_start=77,
-    serialized_end=131,
-    methods=[
-        _descriptor.MethodDescriptor(
-            name="get_next_edf_file",
-            full_name="EdfDatabroker.get_next_edf_file",
-            index=0,
-            containing_service=None,
-            input_type=_EMPTY,
-            output_type=_EDFFILE,
-            serialized_options=None,
-            create_key=_descriptor._internal_create_key,
-        ),
-    ],
-)
+  ),
+])
 _sym_db.RegisterServiceDescriptor(_EDFDATABROKER)
 
-DESCRIPTOR.services_by_name["EdfDatabroker"] = _EDFDATABROKER
+DESCRIPTOR.services_by_name['EdfDatabroker'] = _EDFDATABROKER
 
 # @@protoc_insertion_point(module_scope)

@@ -3,11 +3,10 @@ syntax = "proto3";
 message Empty {
 }
 
-message EdfFile {
-  string edf = 1;
-  string anno = 2;
+message EdfDir {
+  string dir = 1;
 }
 
 service EdfDatabroker {
-  rpc get_next_edf_file(Empty) returns(EdfFile);
+  rpc get_next_edf_dir(Empty) returns(EdfDir);
 }

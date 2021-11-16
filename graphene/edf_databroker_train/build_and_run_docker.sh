@@ -2,16 +2,20 @@
 # This script builds the Docker image with the corresponding
 # gRPC scripts, runs it and start listening on port 8061.
 
-IMAGE="edf_databroker_train"
+IMAGE="bbaldassari/edf_databroker_train"
 
-echo "* Prepare directories."
-echo "  - Copy data files"
-cp -r ../../data/ .
-#echo "  - Copy scripts"
-#cp -r ../../src/scripts/ .
+echo "* Prepare directories & scripts."
+rm -rf data scripts src
+cp -r ../../data/ ../../scripts/ ../../src/ ./
+
+. ../env/bin/activate
+python -m grpc_tools.protoc -I=./ --python_out=. --grpc_python_out=. edf_databroker_train.proto
 
 echo "* Build Docker image."
-docker build . -t bbaldassari/$IMAGE #--no-cache
+docker build . -t $IMAGE 
+
+echo "* Clean temp files."
+#rm -rf data/ scripts/ src/
 
 echo "* Checking if a previous Docker image is running."
 docker_id=$(docker ps | grep $IMAGE | cut -f1 -d\ )
@@ -25,11 +29,12 @@ else
 fi
 
 echo "* Run Docker image."
-docker run -p 8061:8061 bbaldassari/$IMAGE &
+docker run -p 8061:8061 -v $(pwd)/data/tuh/:/data_in $IMAGE &
+sleep 2
 
 echo "* Run client python test script."
 source ../env/bin/activate
-pytest test_$IMAGE.py
+pytest -vvv test_edf_databroker_train.py
 pytest_result=$?
 
 echo "* Stop the Docker image."
