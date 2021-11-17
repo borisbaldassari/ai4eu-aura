@@ -5,13 +5,9 @@ DATA_PATH=$1
 EXPORT_BASE=$2
 EXPORT_PATH=$3
 
-FOLDER_PATH=$(pwd)
-SRC_PATH=./src
-TEST_PATH=./tests
-
 mkdir -p ${EXPORT_BASE}/res-v0_6/${EXPORT_PATH}/
-mkdir -p ${EXPORT_BASE}/feats-v0_6/${EXPORT_PATH}
-mkdir -p ${EXPORT_BASE}/cons-v0_6/${EXPORT_PATH}
+mkdir -p ${EXPORT_BASE}/feats-v0_6/${EXPORT_PATH}/
+mkdir -p ${EXPORT_BASE}/cons-v0_6/${EXPORT_PATH}/
 
 echo "# In $DATA_PATH - Out $EXPORT_PATH"
 

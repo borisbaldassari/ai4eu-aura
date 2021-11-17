@@ -27,10 +27,9 @@ else
     echo "    Listing $IMAGE:"
     docker ps | grep $IMAGE
 fi
-exit
 
 echo "* Run Docker image."
-docker run -p 8061:8061 $IMAGE &
+docker run -p 8061:8061 -e SHARED_FOLDER_PATH="/data/" -v $(pwd)/data:/data/ $IMAGE &
 sleep 2
 
 echo "* Run client python test script."

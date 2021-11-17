@@ -10,30 +10,35 @@ import subprocess
 # gRPC port
 port = 8061
 
-edf_path = "/data_in/"
-data_path = "/data_out/"
-# edf_files: list = []
+edf_path_rel = "tuh/"
+data_path_rel = "out/"
+
+edf_path = ""
+data_path = ""
 
 
 class AuraDataprep(pb2_grpc.AuraDataprepServicer):
     def __init__(self):
         print("Initialising AuraDataprep.")
-        #        self.edf_files = edf_files
+        data_path_abs = os.environ['SHARED_FOLDER_PATH']
+        print(f"  - volume path [{data_path_abs}].")
+        self.edf_path = f"{data_path_abs}/{edf_path_rel}"
+        self.data_path = f"{data_path_abs}/{data_path_rel}"
 
     def prepareEdfDir(self, request, context):
         response = pb2.OutDir()
         dir_in = request.dir
-        dir_edf = f"{edf_path}{dir_in}"
+        dir_edf = f"{self.edf_path}{dir_in}"
         print("In aura_dataprep.py:")
         print(f"- dir_edf {dir_edf}")
-#        dir_out = f"{data_path}{dir_in}"
-#        print(f"- dir_out {dir_out}")
+        print(f"- data_path {self.data_path}")
+        print(f"- dir_in {dir_in}")
         subprocess.call(
             [
                 "bash",
                 "/aura/scripts/run_bash_pipeline.sh",
                 dir_edf,
-                data_path,
+                self.data_path,
                 dir_in,
             ]
         )

@@ -8,7 +8,7 @@ import os
 grpc_url = "localhost:8061"
 
 edf_dir_1 = {
-    "dir": "tuh/dev/01_tcp_ar/002/00009578/",
+    "dir": "dev/01_tcp_ar/002/00009578/",
 }
 
 out_dir_1 = {
@@ -37,12 +37,12 @@ def test_grpc():
     assert dirs is not None
     print(f"dirs is {dirs}")
     assert dirs[0].dir == out_dir_1["dir"]
-    assert os.path.exists("export/cons-v0_6/tuh/dev/01_tcp_ar/002/00009578/00009578_s002_t001.csv")
-    assert os.path.exists("export/cons-v0_6/tuh/dev/01_tcp_ar/002/00009578/00009578_s006_t001.csv")
-    assert os.path.exists("export/res-v0_6/tuh/dev/01_tcp_ar/002/00009578/00009578_s002_t001.csv")
-    assert os.path.exists("export/res-v0_6/tuh/dev/01_tcp_ar/002/00009578/00009578_s006_t001.csv")
-    assert os.path.exists("export/feats-v0_6/tuh/dev/01_tcp_ar/002/00009578/00009578_s002_t001.csv")
-    assert os.path.exists("export/feats-v0_6/tuh/dev/01_tcp_ar/002/00009578/00009578_s006_t001.csv")
+    assert os.path.exists("data/out/cons-v0_6/dev/01_tcp_ar/002/00009578/00009578_s002_t001.csv")
+    assert os.path.exists("data/out/cons-v0_6/dev/01_tcp_ar/002/00009578/00009578_s006_t001.csv")
+    assert os.path.exists("data/out/res-v0_6/dev/01_tcp_ar/002/00009578/00009578_s002_t001.csv")
+    assert os.path.exists("data/out/res-v0_6/dev/01_tcp_ar/002/00009578/00009578_s006_t001.csv")
+    assert os.path.exists("data/out/feats-v0_6/dev/01_tcp_ar/002/00009578/00009578_s002_t001.csv")
+    assert os.path.exists("data/out/feats-v0_6/dev/01_tcp_ar/002/00009578/00009578_s006_t001.csv")
 
 
 if __name__ == "__main__":

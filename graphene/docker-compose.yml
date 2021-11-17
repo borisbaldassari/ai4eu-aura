@@ -18,59 +18,59 @@ services:
     build: aura_dataprep/
     container_name: aura-dataprep-dev-ar
     volumes:
-      - /media/win/Data/TUH/v1.5.2/edf/dev/01_tcp_ar/:/data_in
-      - ./export_compose/dev/01_tcp_ar/:/data_out
-    command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data_in", "/data_out"]
+      - /home/boris/Projects/00_aura/ai4eu-aura/graphene/aura_dataprep/data/:/data
+    #command: ["ls", "-l", "/data/"]
+    command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data/tuh", "/data/out", ""]
 
 
-  aura_dataprep_dev_le:
-    image: bbaldassari/aura_dataprep:latest
-    build: aura_dataprep/
-    container_name: aura-dataprep-dev-le
-    volumes:
-      - /media/win/Data/TUH/v1.5.2/edf/dev/02_tcp_le/:/data_in
-      - ./export_compose/dev/02_tcp_le/:/data_out
-    command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data_in", "/data_out"]
+# aura_dataprep_dev_le:
+#   image: bbaldassari/aura_dataprep:latest
+#   build: aura_dataprep/
+#   container_name: aura-dataprep-dev-le
+#   volumes:
+#     - /media/win/Data/TUH/v1.5.2/edf/dev/02_tcp_le/:/data_in
+#     - ./export_compose/dev/02_tcp_le/:/data_out
+#   command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data_in", "/data_out"]
 
 
-  aura_dataprep_dev_ar_a:
-    image: bbaldassari/aura_dataprep:latest
-    build: aura_dataprep/
-    container_name: aura-dataprep-dev-ar-a
-    volumes:
-      - /media/win/Data/TUH/v1.5.2/edf/dev/03_tcp_ar_a/:/data_in
-      - ./export_compose/dev/03_tcp_ar_a/:/data_out
-    command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data_in", "/data_out"]
+# aura_dataprep_dev_ar_a:
+#   image: bbaldassari/aura_dataprep:latest
+#   build: aura_dataprep/
+#   container_name: aura-dataprep-dev-ar-a
+#   volumes:
+#     - /media/win/Data/TUH/v1.5.2/edf/dev/03_tcp_ar_a/:/data_in
+#     - ./export_compose/dev/03_tcp_ar_a/:/data_out
+#   command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data_in", "/data_out"]
 
 
-  aura_dataprep_train_ar:
-    image: bbaldassari/aura_dataprep:latest
-    build: aura_dataprep/
-    container_name: aura-dataprep-train-ar
-    volumes:
-      - /media/win/Data/TUH/v1.5.2/edf/train/01_tcp_ar/:/data_in
-      - ./export_compose/train/01_tcp_ar/:/data_out
-    command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data_in", "/data_out"]
+# aura_dataprep_train_ar:
+#   image: bbaldassari/aura_dataprep:latest
+#   build: aura_dataprep/
+#   container_name: aura-dataprep-train-ar
+#   volumes:
+#     - /media/win/Data/TUH/v1.5.2/edf/train/01_tcp_ar/:/data_in
+#     - ./export_compose/train/01_tcp_ar/:/data_out
+#   command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data_in", "/data_out"]
 
 
-  aura_dataprep_train_le:
-    image: bbaldassari/aura_dataprep:latest
-    build: aura_dataprep/
-    container_name: aura-dataprep-train-le
-    volumes:
-      - /media/win/Data/TUH/v1.5.2/edf/train/02_tcp_le/:/data_in
-      - ./export_compose/train/02_tcp_le/:/data_out
-    command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data_in", "/data_out"]
+# aura_dataprep_train_le:
+#   image: bbaldassari/aura_dataprep:latest
+#   build: aura_dataprep/
+#   container_name: aura-dataprep-train-le
+#   volumes:
+#     - /media/win/Data/TUH/v1.5.2/edf/train/02_tcp_le/:/data_in
+#     - ./export_compose/train/02_tcp_le/:/data_out
+#   command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data_in", "/data_out"]
 
 
-  aura_dataprep_train_ar_a:
-    image: bbaldassari/aura_dataprep:latest
-    build: aura_dataprep/
-    container_name: aura-dataprep-train-ar-a
-    volumes:
-      - /media/win/Data/TUH/v1.5.2/edf/train/03_tcp_ar_a/:/data_in
-      - ./export_compose/train/03_tcp_ar_a/:/data_out
-    command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data_in", "/data_out"]
+# aura_dataprep_train_ar_a:
+#   image: bbaldassari/aura_dataprep:latest
+#   build: aura_dataprep/
+#   container_name: aura-dataprep-train-ar-a
+#   volumes:
+#     - /media/win/Data/TUH/v1.5.2/edf/train/03_tcp_ar_a/:/data_in
+#     - ./export_compose/train/03_tcp_ar_a/:/data_out
+#   command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data_in", "/data_out"]
 
 
 volumes:

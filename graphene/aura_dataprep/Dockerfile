@@ -5,11 +5,6 @@ RUN pip3 install --upgrade pip
 
 RUN mkdir -p /aura && \
     chmod 777 /aura 
-    
-#    mkdir -p /data_out/data/ && \
-#    chmod 777 /data_out/data/
-#    mkdir -p /data_in && \
-#    chmod 777 /data_in && \
 
 COPY ./requirements.txt /aura/
 
