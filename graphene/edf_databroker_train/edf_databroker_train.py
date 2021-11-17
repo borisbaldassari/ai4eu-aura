@@ -9,13 +9,16 @@ from pathlib import Path
 # gRPC port
 port = 8061
 
-data_path = "/data_in/dev/"
+data_path_rel = "tuh/"
 edf_dirs: list = []
 
 
 class EdfDatabroker(pb2_grpc.EdfDatabrokerServicer):
     def __init__(self):
-        for root, dirs, files in os.walk(data_path):
+        data_path_abs = os.environ['SHARED_FOLDER_PATH']
+        data_path = f"{data_path_abs}/{data_path_rel}/"
+        data_path_dev = f"{data_path}dev"
+        for root, dirs, files in os.walk(data_path_dev):
             if len(dirs) == 0 and root.startswith(data_path):
                 rel_path = root[len(data_path):]
                 edf_dirs.append(rel_path)

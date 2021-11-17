@@ -29,7 +29,7 @@ else
 fi
 
 echo "* Run Docker image."
-docker run -p 8061:8061 -v $(pwd)/data/tuh/:/data_in $IMAGE &
+docker run -p 8061:8061 -e SHARED_FOLDER_PATH="/data/" -v $(pwd)/data/:/data/ $IMAGE &
 sleep 2
 
 echo "* Run client python test script."

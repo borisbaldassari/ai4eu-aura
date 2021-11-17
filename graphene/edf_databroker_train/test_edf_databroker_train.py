@@ -10,7 +10,7 @@ from typing import List, Any
 grpc_url = "localhost:8061"
 
 edf_dir_1 = {
-    "dir": "01_tcp_ar/002/00009578",
+    "dir": "dev/01_tcp_ar/002/00009578",
 }
 
 
