@@ -8,7 +8,7 @@ This repository contains everything required to run the AURA Seizure detection M
 It notably features:
 * Pipelines for data cleaning and preparation, model training, prediction and visualisation.
 * An Airflow orchestration setup to run the various pipelines locally via a local executor.
-* An [AIBricks](https://ai4europe.eu) orchestration setup to run the pipelines in a kubernetes cluster.
+* A [Graphene](https://ai4europe.eu) orchestration setup to run the pipelines in a kubernetes cluster.
 
 
 ## Introduction
@@ -26,9 +26,9 @@ The AURA workflow basically relies on a RandomForest Machine Learning model to d
 TBD
 
 
-## Running with AIBricks
+## Running with containers
 
-See [README.md](aibricks/README.md) in `aibricks/`.
+See [README.md](graphene/README.md) in `graphene/`.
 
 
 ## Contributing

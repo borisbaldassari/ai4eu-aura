@@ -13,7 +13,7 @@ pipeline {
       steps {
         script {
           sh """
-          cd aibricks/
+          cd graphene/
 
           # Delete previously built virtualenv
           if [ -d pyenv ]; then
@@ -28,7 +28,7 @@ pipeline {
           pip install nosexcover
           pip install pylint
           #nosetests --with-xcoverage --with-xunit --cover-package=. --cover-erase
-          pylint -f parseable aibricks | tee pylint.out
+          pylint -f parseable graphene | tee pylint.out
           ls -R
           pip install -r requirements.txt
           """
@@ -48,7 +48,7 @@ pipeline {
       steps {
         script {
           sh """
-          pytest aibricks/ -s tests/unit
+          pytest graphene/ -s tests/unit
           """
         }
       }

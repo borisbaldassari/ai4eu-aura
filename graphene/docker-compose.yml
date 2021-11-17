@@ -43,7 +43,6 @@ services:
     command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data_in", "/data_out"]
 
 
-
   aura_dataprep_train_ar:
     image: bbaldassari/aura_dataprep:latest
     build: aura_dataprep/
