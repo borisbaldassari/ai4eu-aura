@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+message DataDir {
+  string dir = 1;
+}
+
+message TrainingStatus {
+  double accuracy = 1;
+  double validation_loss = 2;
+  string status_text = 3;
+}
+
+service AuraMlTrainer {
+  rpc startTraining(DataDir) returns(TrainingStatus);
+}
