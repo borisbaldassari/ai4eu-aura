@@ -83,4 +83,6 @@ create_ml_dataset:
 # ------------------
 train:
 	. $(FOLDER_PATH)/env/bin/activate; \
-	python3 src/usecase/train_model.py --ml-dataset-path $(EXPORT_PATH)/ml_dataset/df_ml.csv
+	python3 src/usecase/train_model.py \
+		--ml-dataset-path $(EXPORT_PATH)/ml_dataset/df_ml.csv \
+		--output-folder $(EXPORT_PATH)/ml_dataset/model/

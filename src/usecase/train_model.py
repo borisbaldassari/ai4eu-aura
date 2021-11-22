@@ -237,12 +237,16 @@ def train_model(ml_dataset_path: str,
         'train',
         y_pred=y_train_pred,
         y_true=y_train,
-        results_dict=results_dict)
+        results_dict=results_dict,
+        output_folder=output_folder
+    )
     results_dict = compute_metrics(
         'test',
         y_pred=y_test_pred,
         y_true=y_test,
-        results_dict=results_dict)
+        results_dict=results_dict,
+        output_folder=output_folder
+    )
 
     # Converting int64 values to int for proper json export
     for key in results_dict.keys():
