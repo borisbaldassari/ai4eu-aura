@@ -2,23 +2,12 @@ version: '3.3'
 
 services:
 
-#  edf_databroker_train:
-#    image: bbaldassari/edf_databroker_train:latest
-#    container_name: edf-databroker-train
-#    ports:
-#      - '8061:8061'
-#    volumes:
-#      - edf-storage:/data
-#    environment:
-      # Defautl db
-#      - EDF_FILE=${INFLUXDB_DATABASE}
-
   aura_dataprep_dev_ar:
     image: bbaldassari/aura_dataprep:latest
     build: aura_dataprep/
     container_name: aura-dataprep-dev-ar
     volumes:
-      - /home/boris/Projects/00_aura/ai4eu-aura/graphene/aura_dataprep/data/:/data
+      - ${DATA_DIR}/:/data
     #command: ["ls", "-l", "/data/"]
     command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data/tuh", "/data/out", ""]
 
