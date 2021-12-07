@@ -1,6 +1,13 @@
 #!/bin/bash
+
+# Copyright (C) 2021 The AURA developers
+# License: GNU General Public License version 3, or any later version
+# See top-level LICENSE file for more information
+# SPDX-License-Identifier: GPL-2.0
+#
 # This script builds the Docker image with the corresponding
 # gRPC scripts, runs it and start listening on port 8061.
+#
 
 IMAGE="bbaldassari/aura_ml_trainer"
 

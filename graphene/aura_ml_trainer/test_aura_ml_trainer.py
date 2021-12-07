@@ -1,3 +1,8 @@
+# Copyright (C) 2021 The AURA developers
+# License: GNU General Public License version 3, or any later version
+# See top-level LICENSE file for more information
+# SPDX-License-Identifier: GPL-2.0
+
 import grpc
 import aura_ml_trainer_pb2 as pb2
 import aura_ml_trainer_pb2_grpc as pb2_grpc

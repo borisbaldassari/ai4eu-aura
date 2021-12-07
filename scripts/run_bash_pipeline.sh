@@ -1,4 +1,9 @@
 
+# Copyright (C) 2021 The AURA developers
+# License: GNU General Public License version 3, or any later version
+# See top-level LICENSE file for more information
+# SPDX-License-Identifier: GPL-2.0
+
 # this script is meant to be executed from the root directory of the repo.
 
 DATA_PATH=$1

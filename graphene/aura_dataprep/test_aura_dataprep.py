@@ -1,3 +1,8 @@
+# Copyright (C) 2021 The AURA developers
+# License: GNU General Public License version 3, or any later version
+# See top-level LICENSE file for more information
+# SPDX-License-Identifier: GPL-2.0
+
 import grpc
 import aura_dataprep_pb2 as pb2
 import aura_dataprep_pb2_grpc as pb2_grpc
@@ -13,7 +18,6 @@ edf_dir_1 = {
 
 out_dir_1 = {
     "dir": "false",
-#    "dir": "tuh/dev/01_tcp_ar/002/00009578/",
 }
 
 
