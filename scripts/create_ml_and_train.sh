@@ -3,8 +3,8 @@
 DATA_PATH=$1
 OUT_PATH=$2
 
-mkdir ${OUT_PATH}/ml_dataset
-mkdir ${OUT_PATH}/model
+mkdir -p ${OUT_PATH}/ml_dataset
+mkdir -p ${OUT_PATH}/model
 
 echo "# Create ML Dataset"
 echo "  - Data ${DATA_PATH}/cons-v0_6"

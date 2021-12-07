@@ -30,6 +30,7 @@ class AuraMlTrainer(pb2_grpc.AuraMlTrainerServicer):
         print("In aura_ml_trainer.py:")
         print(f"- data_path {self.data_path}")
         print(f"- dir_data {dir_data}")
+        print(f"- model_path {self.model_path}")
         file_list=os.listdir(dir_data)
         print(f"file list {file_list}")
         subprocess.call(
@@ -43,7 +44,8 @@ class AuraMlTrainer(pb2_grpc.AuraMlTrainerServicer):
         response.accuracy = 0.2
         response.validation_loss = 0.1
         response.status_text = "ok"
-        print(f"* in aura_ml_trainer/startTraining {response}.")
+        print("* In aura_ml_trainer/startTraining")
+        print(f"{response}.")
         return response
 
 
