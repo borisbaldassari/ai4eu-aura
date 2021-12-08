@@ -31,7 +31,24 @@ The visualisation block displays the ECGs with both the model predictions and th
 
 ## Execution using docker-compose
 
-All images are built along the same structure and provide the same facilities for testing. We'll use image `edf_databroker_train` as an example, but any image directory name can be used interchangeably.
+The docker-compose setup makes use of the Docker images for the execution. To run the full process, make sure that the EDF files are stored in a subdirectory `tuh/` of the data dir, e.g. `data/tuh` and then simply execute:
+
+```
+$ bash run_docker_compose.sh ../data/
+```
+
+The two steps can also be executed on their own. One need to set the `DATA_DIR` env variable to point to the data directory. So when in the `graphene/` directory, issue the following commands:
+
+```
+$ export DATA_DIR=../data/
+$ docker-compose -f docker-compose-dataprep.yml up
+```
+
+and then:
+
+```
+$ docker-compose -f docker-compose-mltrain.yml up
+```
 
 
 ## Execution using Eclipse Graphene
@@ -101,33 +118,32 @@ docker build . -t bbaldassari/aura_dataprep
 Run the image. For a test drive, you can use the default data sample found in `test/data`:
 
 ```
-docker run -v $(pwd)/data/tuh/:/data_in -v $(pwd)/export/:/data_out bbaldassari/aura_dataprep bash /aura/scripts/run_bash_pipeline.sh /data_in /data_out
+docker run -v $(pwd)/data/:/data bbaldassari/aura_dataprep bash /aura/scripts/run_bash_pipeline.sh /data/tuh /data/out
 ```
 
-All exports will be stored, in this example, in the `export/` local directory.
+All exports will be stored, in this example, in the `data/out/` local directory.
 
 Example:
 
 ```
-boris@castalia:aura_dataprep$ docker run -v $(pwd)/data/tuh/:/data_in -v $(pwd)/export/:/data_out bbaldassari/aura_dataprep bash /aura/scripts/run_bash_pipeline.sh /data_in /data_out
+$ docker run -v $(pwd)/data/:/data bbaldassari/aura_dataprep bash /aura/scripts/run_bash_pipeline.sh /data/tuh /data/out
+# Run dataprep pipeline - In /data/tuh - Out 
 - Detect rr-intervals.
 Start Executing script
 /aura
-/data_in//dev/01_tcp_ar/002/00009578/00009578_s006_t001.edf - OK
-/data_in//dev/01_tcp_ar/002/00009578/00009578_s002_t001.edf - OK
+/data/tuh/dev/01_tcp_ar/002/00009578/00009578_s006_t001.edf - OK
+/data/tuh/dev/01_tcp_ar/002/00009578/00009578_s002_t001.edf - OK
 - Compute features.
 Start Executing script
 /aura
-/data_out//res-v0_6/dev/01_tcp_ar/002/00009578/00009578_s002_t001.csv # - OK
-/data_out//res-v0_6/dev/01_tcp_ar/002/00009578/00009578_s006_t001.csv # - OK
+/data/out/res-v0_6//dev/01_tcp_ar/002/00009578/00009578_s002_t001.csv # - OK
+/data/out/res-v0_6//dev/01_tcp_ar/002/00009578/00009578_s006_t001.csv # - OK
 - Consolidate features and annotations.
 Start Executing script
 /aura
-/data_in//dev/01_tcp_ar/002/00009578/00009578_s002_t001.tse_bi
-/data_out//feats-v0_6/dev/01_tcp_ar/002/00009578/00009578_s002_t001.csv and /data_in//dev/01_tcp_ar/002/00009578/00009578_s002_t001.tse_bi # - OK
-/data_in//dev/01_tcp_ar/002/00009578/00009578_s006_t001.tse_bi
-/data_out//feats-v0_6/dev/01_tcp_ar/002/00009578/00009578_s006_t001.csv and /data_in//dev/01_tcp_ar/002/00009578/00009578_s006_t001.tse_bi # - OK
+/data/out/feats-v0_6//dev/01_tcp_ar/002/00009578/00009578_s002_t001.csv and /data/tuh/dev/01_tcp_ar/002/00009578/00009578_s002_t001.tse_bi # - OK
+/data/out/feats-v0_6//dev/01_tcp_ar/002/00009578/00009578_s006_t001.csv and /data/tuh/dev/01_tcp_ar/002/00009578/00009578_s006_t001.tse_bi # - OK
 Done
-boris@castalia:aura_dataprep$ 
+
 ```
 
