@@ -16,5 +16,5 @@ fi
 export DATA_DIR
 echo "# Using [$DATA_DIR] as data dir."
 
-docker-compose -f docker-compose-dataprep.yml up
-docker-compose -f docker-compose-mltrain.yml up
+time docker-compose -f docker-compose-dataprep.yml up
+time docker-compose -f docker-compose-mltrain.yml up
