@@ -40,11 +40,12 @@ IFS=$'\n'
 # List all rr_files in InputDest
 for features_file in $(find $InputDest/ -type f -name "*.csv"); do
     filename=$(echo "$features_file" | awk -F/ '{print $NF}')
-    [[ $filename = _* ]] && continue
+    #[[ $filename = _* ]] && continue
     # Get relative path
     path=$(echo $features_file | sed "s/$filename//g")
     CleanDest=$(echo $InputDest | sed 's/\//\\\//g')
     relative_path=$(echo $path | sed "s/$CleanDest\///g")
+    filename=${filename:2}
     annotation_file_path=$AnnotDest/$relative_path${filename%%\.*}.tse_bi 
 
     python3 $ECG_PATH/src/usecase/consolidate_feats_and_annot.py --features-file-path $features_file --annotations-file-path $annotation_file_path --output-folder $TargetDest/$relative_path
