@@ -162,6 +162,7 @@ def clean_ml_dataset(df_ml: pd.DataFrame,
         The clean ml dataset
     """
     print(f'Lines before Nan removal : {df_ml.shape[0]}')
+    df_ml.replace([np.inf, -np.inf], np.nan, inplace=True)
     df_ml = df_ml.dropna()
     print(f'Lines after Nan removal : {df_ml.shape[0]}')
 
