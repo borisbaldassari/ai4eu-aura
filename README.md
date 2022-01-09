@@ -1,5 +1,5 @@
 
-[![Build Status](https://app.travis-ci.com/borisbaldassari/ai4eu-aura.svg?branch=main)](https://app.travis-ci.com/borisbaldassari/ai4eu-aura)
+[![Build Status](https://app.travis-ci.com/borisbaldassari/aice-aura.svg?branch=main)](https://app.travis-ci.com/borisbaldassari/aice-aura)
 
 # AURA Epileptic Seizure Detection
 
