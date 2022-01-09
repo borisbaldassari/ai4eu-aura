@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+message Empty {
+}
+
+message EdfDir {
+  string dir = 1;
+}
+
+service EdfDatabroker {
+  rpc get_next_edf_dir(Empty) returns(EdfDir);
+}

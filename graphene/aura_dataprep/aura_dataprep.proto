@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+message OutDir {
+  string dir = 1;
+}
+
+message EdfDir {
+  string dir = 1;
+}
+
+service AuraDataprep {
+  rpc prepareEdfDir(EdfDir) returns(OutDir);
+}

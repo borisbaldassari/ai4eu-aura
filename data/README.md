@@ -1,13 +1,22 @@
 
 # Data samples
 
+## out
 
-## TUH
+The `out/` directory is used by the `graphene/aura_ml_trainer/` image for its tests.
+
+## test_data
+
+The `test_data/` directory is used by the `src/usecase/` unit tests.
+
+## tuh
 
 A few small edf files are provided here for quick tests:
 
 * 00009578_s002_t001.edf
 * 00009578_s006_t001.edf
+
+The `tuh/` directory is used by the `graphene/edf_databroker_train/` and `graphene/aura_dataprep/` images for their tests.
 
 More complex and interesting examples are stored in <https://icedrive.net/1/2f1JKbzU8n>:
 
