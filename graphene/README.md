@@ -79,13 +79,13 @@ Search for all `.edf` files within the input directory, and for each file run:
 Open up a terminal in the image directory to run the server, and execute the following command:
 ```
 source env/bin/activate
-python edf_databroker_train.py
+python aura_dataprep.py
 ```
 
 Open another terminal in the image directory for the client execution, and execute the following command:
 ```
 source env/bin/activate
-pytest test_edf_databroker_train.py
+pytest aura_dataprep.py
 ```
 
 
@@ -100,12 +100,12 @@ bash build_and_run_docker.sh
 Commands to build and run a container manually:
 
 ```
-docker build . -t bbaldassari/edf_databroker_train
-docker run -p 8061:8061 bbaldassari/edf_databroker_train
+docker build . -t bbaldassari/aura_dataprep
+docker run -p 8061:8061 bbaldassari/aura_dataprep
 ```
 
 
-#### Building and Testing
+#### Building and Testing dataprep
 
 The image is based off a python image and embeds the scripts to clean the data. It is self-sufficient.
 
@@ -146,4 +146,14 @@ Start Executing script
 Done
 
 ```
+
+
+#### Building and testing ml_trainer
+
+The same applies to the ml_trainer image. To execute the training use the following command line:
+
+```
+docker run -v $(pwd)/data/:/data bbaldassari/aura_ml_trainer bash /aura/scripts/create_ml_and_train.sh /data/out /data/model
+```
+
 

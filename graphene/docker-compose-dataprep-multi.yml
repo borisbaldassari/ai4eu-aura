@@ -1,0 +1,52 @@
+version: '3.3'
+
+services:
+
+  aura_dataprep_train_tcp_ar_1:
+    image: bbaldassari/aura_dataprep:latest
+    build: aura_dataprep/
+    container_name: aura-dataprep-tcp-ar-1
+    volumes:
+      - ${DATA_DIR}/data_1/:/data
+    command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data/tuh", "/data/out", ""]
+
+
+  aura_dataprep_train_tcp_ar_2:
+    image: bbaldassari/aura_dataprep:latest
+    build: aura_dataprep/
+    container_name: aura-dataprep-tcp-ar-2
+    volumes:
+      - ${DATA_DIR}/data_2/:/data
+    command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data/tuh", "/data/out", ""]
+
+
+  aura_dataprep_train_tcp_le_1:
+    image: bbaldassari/aura_dataprep:latest
+    build: aura_dataprep/
+    container_name: aura-dataprep-train_tcp_le_1
+    volumes:
+      - ${DATA_DIR}/data_3/:/data
+    command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data/tuh", "/data/out", ""]
+
+
+  aura_dataprep_train_tcp_le_2:
+    image: bbaldassari/aura_dataprep:latest
+    build: aura_dataprep/
+    container_name: aura-dataprep-train-tcp_le_2
+    volumes:
+      - ${DATA_DIR}/data_4/:/data
+    command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data/tuh", "/data/out", ""]
+
+
+  aura_dataprep_train_ar_a:
+    image: bbaldassari/aura_dataprep:latest
+    build: aura_dataprep/
+    container_name: aura-dataprep-train-ar_a
+    volumes:
+      - ${DATA_DIR}/data_5/:/data
+    command: ["bash", "/aura/scripts/run_bash_pipeline.sh", "/data/tuh", "/data/out", ""]
+
+
+
+volumes:
+    edf-storage:
