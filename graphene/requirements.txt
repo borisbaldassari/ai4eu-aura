@@ -9,6 +9,7 @@ biosppy == 0.8.0
 
 # aura_ml_trainer/aura_ml_trainer_pb2.py: 5,6,7,8
 google == 3.0.0
+protobuf == 3.19.1
 
 # aura_ml_trainer/aura_ml_trainer.py: 6
 # aura_ml_trainer/aura_ml_trainer_pb2_grpc.py: 3
@@ -59,17 +60,6 @@ scikit_learn == 1.0.2
 
 # aura_ml_trainer/src/usecase/aura_features_computation.py: 12
 scipy == 1.7.1
-
-# aura_ml_trainer/src/usecase/compute_hrvanalysis_features.py: 20
-# aura_ml_trainer/src/usecase/consolidate_feats_and_annot.py: 17
-# aura_ml_trainer/src/usecase/create_ml_dataset.py: 15,16
-# aura_ml_trainer/src/usecase/detect_qrs.py: 13,14,15
-# aura_ml_trainer/src/usecase/ecg_channel_read.py: 6
-# aura_ml_trainer/src/usecase/extract_annotations.py: 12
-# aura_ml_trainer/src/usecase/fetch_database.py: 11
-# aura_ml_trainer/src/usecase/train_model.py: 34
-src == 0.0.7
-
 # aura_ml_trainer/src/domain/aura_ecg_detector.py: 5
 # aura_ml_trainer/src/domain/qrs_detector.py: 3
 wfdb == 3.4.1
